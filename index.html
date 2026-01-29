@@ -110,7 +110,7 @@
                   <span class="text-xs sm:text-sm font-semibold" style="color: ${colors.rose[400]}">Physiological</span>
                 </div>
                 <p class="text-gray-300 text-xs sm:text-sm mb-2">Red increases <strong>blood pressure, respiratory rate, and eye blink frequency</strong> before your brain even processes what it's seeing.</p>
-                <p class="text-gray-500 text-xs italic">— Robert Gerard (1958), Nakshian (1964)</p>
+                <a href="https://www.scientificamerican.com/article/how-the-color-red-influences-our-behavior/" target="_blank" class="text-gray-500 text-xs italic hover:text-rose-400 transition-colors flex items-center gap-1">— Scientific American <i data-lucide="external-link" class="w-3 h-3"></i></a>
               </div>
               <div class="rounded-xl sm:rounded-2xl p-3 sm:p-4" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
                 <div class="flex items-center gap-2 mb-2">
@@ -118,35 +118,35 @@
                   <span class="text-xs sm:text-sm font-semibold" style="color: ${colors.rose[400]}">Neurological</span>
                 </div>
                 <p class="text-gray-300 text-xs sm:text-sm mb-2">20 years of research: red receives an <strong>"attentional advantage"</strong> in visual processing. Works best <strong>"when something is at stake."</strong></p>
-                <p class="text-gray-500 text-xs italic">— Elliot & Maier, University of Rochester</p>
+                <a href="https://psycnet.apa.org/record/2007-01821-008" target="_blank" class="text-gray-500 text-xs italic hover:text-rose-400 transition-colors flex items-center gap-1">— Elliot & Maier, APA PsycNet <i data-lucide="external-link" class="w-3 h-3"></i></a>
               </div>
               <div class="rounded-xl sm:rounded-2xl p-3 sm:p-4" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
                 <div class="flex items-center gap-2 mb-2">
                   <i data-lucide="mouse-pointer-click" class="w-4 h-4" style="color: ${colors.rose[500]}"></i>
                   <span class="text-xs sm:text-sm font-semibold" style="color: ${colors.rose[400]}">Behavioral</span>
                 </div>
-                <p class="text-gray-300 text-xs sm:text-sm mb-2">Red exposure causes <strong>faster motor movements</strong>. Creates urgency response — users act, don't just browse.</p>
-                <p class="text-gray-500 text-xs italic">— Journal of Consumer Research (2013)</p>
+                <p class="text-gray-300 text-xs sm:text-sm mb-2">Red backgrounds increase <strong>willingness-to-pay</strong> and create urgency response — users act, don't just browse.</p>
+                <a href="https://www.jstor.org/stable/10.1086/666466" target="_blank" class="text-gray-500 text-xs italic hover:text-rose-400 transition-colors flex items-center gap-1">— Journal of Consumer Research <i data-lucide="external-link" class="w-3 h-3"></i></a>
               </div>
             </div>
             <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-gray-700">
               <p class="text-xs sm:text-sm font-semibold text-gray-300 mb-3">Who else figured this out:</p>
               <div class="grid grid-cols-3 gap-2 sm:gap-4 text-center">
-                <div>
+                <a href="https://uxplanet.org/how-tinder-design-hooks-you-up-60201d78501f" target="_blank" class="hover:bg-gray-700/50 rounded-lg p-2 transition-colors">
                   <div class="text-lg sm:text-2xl mb-1">🔥</div>
                   <p class="text-xs sm:text-sm font-semibold" style="color: ${colors.rose[400]}">Tinder</p>
                   <p class="text-gray-500 text-xs">Red = swipe, hearts, "yes"</p>
-                </div>
-                <div>
+                </a>
+                <a href="https://sashikiran.com/netflix-strategy/" target="_blank" class="hover:bg-gray-700/50 rounded-lg p-2 transition-colors">
                   <div class="text-lg sm:text-2xl mb-1">🎬</div>
                   <p class="text-xs sm:text-sm font-semibold text-red-500">Netflix</p>
                   <p class="text-gray-500 text-xs">Red velvet theater seats → excitement</p>
-                </div>
-                <div>
+                </a>
+                <a href="https://www.dezeen.com/2014/07/16/airbnb-rebrand-designstudio-logo-belo/" target="_blank" class="hover:bg-gray-700/50 rounded-lg p-2 transition-colors">
                   <div class="text-lg sm:text-2xl mb-1">🏠</div>
                   <p class="text-xs sm:text-sm font-semibold text-[#FF5A5F]">Airbnb</p>
                   <p class="text-gray-500 text-xs">Blue → Coral for "belonging"</p>
-                </div>
+                </a>
               </div>
             </div>
           </div>`;
@@ -315,44 +315,45 @@
       }
 
       if (slide.type === 'conclusion') {
+        const roadmapItems = [
+          { title: 'New Assets', desc: 'Icons, splash screens, app icon', icon: 'palette' },
+          { title: 'Mobile App', desc: 'Full redesign with new identity', icon: 'smartphone' },
+          { title: 'Webapp v1', desc: 'Revive with single booking experience', icon: 'globe' },
+          { title: 'Voting Webapp', desc: 'Redesign to match new system', icon: 'vote' },
+          { title: 'LottieFiles', desc: 'Custom animations for premium feel', icon: 'sparkles' }
+        ];
         content = `
-          <div class="text-center px-4">
-            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6" style="background: ${colors.rose[500]}">
-              ${Logo('#fff', 40)}
+          <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 items-center lg:items-start px-4">
+            <div class="text-center lg:text-left lg:flex-1">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mx-auto lg:mx-0 mb-4" style="background: ${colors.rose[500]}">
+                ${Logo('#fff', 36)}
+              </div>
+              <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">This isn't a redesign.<br/>It's a repositioning.</h2>
+              <div class="space-y-2 mb-4">
+                <p class="text-sm sm:text-base text-gray-300">Blue says "we're trustworthy."</p>
+                <p class="text-sm sm:text-base text-gray-300">Rose says <span class="font-semibold" style="color: ${colors.rose[400]}">"swipe yes."</span></p>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-500 italic max-w-sm mx-auto lg:mx-0">"We're not here to help you find activities. We're here to get your group <span style="color: ${colors.rose[400]}">out the door—together</span>."</p>
             </div>
-            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">This isn't a redesign. It's a repositioning.</h2>
-            <div class="max-w-2xl mx-auto space-y-2 sm:space-y-3 mb-5 sm:mb-6">
-              <p class="text-base sm:text-xl text-gray-300">Blue says "we're trustworthy." Rose says <span class="font-semibold" style="color: ${colors.rose[400]}">"swipe yes."</span></p>
-              <p class="text-base sm:text-xl text-gray-300">Our USP is <span class="font-semibold" style="color: ${colors.rose[400]}">group voting</span>. The color should match the energy.</p>
-            </div>
-            <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl p-4 sm:p-5 max-w-2xl mx-auto border border-gray-700 mb-4 sm:mb-6 text-left">
-              <p class="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-center" style="color: ${colors.rose[300]}">The Roadmap</p>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm">
-                <div class="flex items-start gap-2">
-                  <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style="background: ${colors.rose[500]}">1</span>
-                  <span class="text-gray-300"><strong>New assets</strong> — Icons, splash screens, app icon</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style="background: ${colors.rose[500]}">2</span>
-                  <span class="text-gray-300"><strong>Mobile app</strong> — Full redesign with new identity</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style="background: ${colors.rose[500]}">3</span>
-                  <span class="text-gray-300"><strong>Webapp v1</strong> — Revive with single booking (voting later)</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style="background: ${colors.rose[500]}">4</span>
-                  <span class="text-gray-300"><strong>Voting webapp</strong> — Redesign to match new system</span>
-                </div>
-                <div class="flex items-start gap-2 sm:col-span-2">
-                  <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style="background: ${colors.rose[500]}">5</span>
-                  <span class="text-gray-300"><strong>LottieFiles</strong> — Custom animations for premium feel (like Airbnb, Duolingo, Headspace)</span>
-                </div>
+            <div class="lg:flex-1 w-full max-w-md">
+              <p class="text-xs sm:text-sm uppercase tracking-wider mb-4 text-center lg:text-left" style="color: ${colors.rose[400]}">The Roadmap</p>
+              <div class="relative">
+                ${roadmapItems.map((item, i) => `
+                  <div class="flex items-start gap-3 sm:gap-4 ${i < roadmapItems.length - 1 ? 'pb-4 sm:pb-5' : ''}">
+                    <div class="flex flex-col items-center">
+                      <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center flex-shrink-0 z-10" style="background: ${i === 0 ? colors.rose[500] : 'transparent'}; border: 2px solid ${colors.rose[500]}">
+                        <i data-lucide="${item.icon}" class="w-4 h-4 sm:w-5 sm:h-5" style="color: ${i === 0 ? '#fff' : colors.rose[500]}"></i>
+                      </div>
+                      ${i < roadmapItems.length - 1 ? `<div class="w-0.5 flex-1 min-h-[20px] sm:min-h-[24px]" style="background: linear-gradient(to bottom, ${colors.rose[500]}, ${colors.rose[500]}40)"></div>` : ''}
+                    </div>
+                    <div class="pt-1 sm:pt-1.5">
+                      <p class="text-sm sm:text-base font-semibold text-white">${item.title}</p>
+                      <p class="text-xs sm:text-sm text-gray-400">${item.desc}</p>
+                    </div>
+                  </div>
+                `).join('')}
               </div>
             </div>
-            <blockquote class="text-sm sm:text-base italic text-gray-400 max-w-lg mx-auto">
-              "We're not here to help you find activities. We're here to get your group <span style="color: ${colors.rose[400]}">out the door—together</span>."
-            </blockquote>
           </div>`;
       }
 
