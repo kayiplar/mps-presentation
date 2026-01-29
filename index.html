@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Catalyst - MPS Visual Identity</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .screen-img { border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white min-h-screen">
+  <div id="app"></div>
+
+  <script>
+    const colors = {
+      old: { primary: '#2522A4', primaryLight: '#4960CE' },
+      rose: { 300: '#FDA4AF', 400: '#FB7185', 500: '#E11D48' },
+      charcoal: { 500: '#4A4A4A', 700: '#2E2E2E' }
+    };
+
+    const slides = [
+      { type: 'title' },
+      { type: 'why' },
+      { type: 'psychology' },
+      { type: 'screens-before' },
+      { type: 'screens-after' },
+      { type: 'hierarchy' },
+      { type: 'comparison' },
+      { type: 'conclusion' }
+    ];
+
+    let current = 0;
+
+    const Logo = (color, size) => `
+      <svg width="${size}" height="${size * 0.7}" viewBox="0 0 66 46" fill="none">
+        <path stroke="${color}" stroke-linecap="round" stroke-width="${Math.max(2, size / 20)}"
+          d="M2 24.07c4.6-10.106 12.568-11.596 16.585 0 2.719 9.577 1.814 18.157-2.72 19.696-10.82 3.67-4.341-36.928 7.773-41.917 8.422-3.468.843 25.024 7.71 25.98 7.32.821 5.053-25.98 13.864-24.943 8.81 1.037-2.138 20.796 6.802 22.87 8.94 2.072 12.763-19.372 12.763-19.372"/>
+      </svg>`;
+
+    const renderSlide = () => {
+      const slide = slides[current];
+      let content = '';
+
+      if (slide.type === 'title') {
+        content = `
+          <div class="text-center">
+            <div class="flex justify-center gap-4 mb-8">
+              <div class="w-16 h-16 rounded-2xl flex items-center justify-center" style="background: ${colors.old.primary}">
+                ${Logo('#fff', 40)}
+              </div>
+              <div class="w-1 bg-gray-700 rounded-full"></div>
+              <div class="w-16 h-16 rounded-2xl flex items-center justify-center" style="background: ${colors.rose[500]}">
+                ${Logo('#fff', 40)}
+              </div>
+            </div>
+            <h1 class="text-5xl font-bold mb-4">Project Catalyst</h1>
+            <p class="text-xl mb-2" style="color: ${colors.rose[400]}">Evolving Our Visual Identity</p>
+            <p class="text-gray-400">From Passive Utility to Action-Oriented Experience</p>
+          </div>`;
+      }
+
+      if (slide.type === 'why') {
+        content = `
+          <div>
+            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Strategic Why</p>
+            <h2 class="text-4xl font-bold mb-8">Moving Beyond the "Sea of Blue"</h2>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="bg-indigo-950/50 border border-indigo-800 rounded-2xl p-5">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style="background: ${colors.old.primary}">
+                  <i data-lucide="trending-up" class="w-5 h-5 text-white"></i>
+                </div>
+                <h3 class="font-semibold text-indigo-300 mb-2">Current State</h3>
+                <p class="text-gray-400 text-sm">Blue is industry standard for "safety" and "trust." But safety often translates to passivity.</p>
+              </div>
+              <div class="bg-gray-800/50 border border-gray-700 rounded-2xl p-5">
+                <div class="w-10 h-10 bg-gray-600 rounded-xl flex items-center justify-center mb-3">
+                  <i data-lucide="refresh-cw" class="w-5 h-5 text-white"></i>
+                </div>
+                <h3 class="font-semibold text-gray-300 mb-2">The Shift</h3>
+                <p class="text-gray-400 text-sm">Transitioning to Rose and Charcoal to disrupt the user's subconscious expectations.</p>
+              </div>
+              <div class="rounded-2xl p-5" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style="background: ${colors.rose[500]}">
+                  <i data-lucide="target" class="w-5 h-5 text-white"></i>
+                </div>
+                <h3 class="font-semibold mb-2" style="color: ${colors.rose[300]}">The Goal</h3>
+                <p class="text-gray-400 text-sm">Transform from a directory users "check" into a catalyst users "act" upon.</p>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      if (slide.type === 'psychology') {
+        content = `
+          <div>
+            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">Color Psychology</p>
+            <h2 class="text-4xl font-bold mb-8">Color as a Conversion Tool</h2>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="rounded-2xl p-6" style="background: linear-gradient(135deg, rgba(225, 29, 72, 0.2) 0%, rgba(225, 29, 72, 0.05) 100%); border: 1px solid ${colors.rose[500]}60">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-12 h-12 rounded-xl" style="background: ${colors.rose[500]}"></div>
+                  <h3 class="text-xl font-bold" style="color: ${colors.rose[400]}">Rose — The Pulse</h3>
+                </div>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                  <li class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4" style="color: ${colors.rose[500]}"></i> Physiologically increases heart rate</li>
+                  <li class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4" style="color: ${colors.rose[500]}"></i> Creates sense of urgency</li>
+                  <li class="flex items-center gap-2"><i data-lucide="flame" class="w-4 h-4" style="color: ${colors.rose[500]}"></i> Signals "High Energy" & "Excitement"</li>
+                  <li class="flex items-center gap-2"><i data-lucide="target" class="w-4 h-4" style="color: ${colors.rose[500]}"></i> Core of activity-matching value prop</li>
+                </ul>
+              </div>
+              <div class="bg-gradient-to-br from-gray-800/80 to-gray-700/30 border border-gray-600 rounded-2xl p-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-12 h-12 rounded-xl" style="background: ${colors.charcoal[500]}"></div>
+                  <h3 class="text-xl font-bold text-gray-300">Charcoal — The Foundation</h3>
+                </div>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-gray-500"></i> Adds sophistication & authority</li>
+                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-gray-500"></i> Tech-forward premium feel</li>
+                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-gray-500"></i> Balances Rose's intensity</li>
+                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-gray-500"></i> Premium, not aggressive</li>
+                </ul>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      if (slide.type === 'screens-before') {
+        content = `
+          <div>
+            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.old.primaryLight}">Before — Blue Identity</p>
+            <h2 class="text-3xl font-bold mb-6">Current Design System</h2>
+            <div class="flex justify-center">
+              <img src="images/blue-composite.png" alt="Blue identity screens" class="screen-img max-h-[65vh] w-auto">
+            </div>
+            <p class="text-center text-gray-500 mt-4">Safe, familiar, passive — blends in with industry standard</p>
+          </div>`;
+      }
+
+      if (slide.type === 'screens-after') {
+        content = `
+          <div>
+            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">After — Rose + Charcoal</p>
+            <h2 class="text-3xl font-bold mb-6">New Visual Identity</h2>
+            <div class="flex justify-center">
+              <img src="images/rose-composite.png" alt="Rose identity screens" class="screen-img max-h-[65vh] w-auto">
+            </div>
+            <p class="text-center text-gray-500 mt-4">Bold, energetic, action-ready — CTAs pop, clear hierarchy</p>
+          </div>`;
+      }
+
+      if (slide.type === 'hierarchy') {
+        content = `
+          <div>
+            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">UX Strategy</p>
+            <h2 class="text-4xl font-bold mb-8">Button Hierarchy & Logic</h2>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
+                <div class="flex items-center gap-4 mb-4">
+                  <button class="px-6 py-3 rounded-xl font-semibold text-sm text-white" style="background: ${colors.rose[500]}">Check availability</button>
+                  <span class="font-medium" style="color: ${colors.rose[400]}">Primary CTA</span>
+                </div>
+                <p class="text-gray-400 text-sm">Reserved for the "Golden Path" — the single action we want users to take. The <span style="color: ${colors.rose[400]}">Isolation Effect</span> ensures the eye has only one clear destination.</p>
+              </div>
+              <div class="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
+                <div class="flex items-center gap-4 mb-4">
+                  <button class="px-6 py-3 rounded-xl font-semibold text-sm text-white" style="background: ${colors.charcoal[700]}; border: 1px solid ${colors.charcoal[500]}">Log in</button>
+                  <span class="text-gray-400 font-medium">Secondary CTA</span>
+                </div>
+                <p class="text-gray-400 text-sm">Used for administrative tasks. Supports the experience without competing for attention. Clear visual hierarchy.</p>
+              </div>
+            </div>
+            <div class="mt-6 rounded-2xl p-4 text-center" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
+              <p style="color: ${colors.rose[300]}">Result: Reduced cognitive load. We make the decision <em>before</em> they click.</p>
+            </div>
+          </div>`;
+      }
+
+      if (slide.type === 'comparison') {
+        const rows = [
+          { f: 'User Intent', old: '"I\'m looking for info."', new: '"I\'m ready to go."' },
+          { f: 'Vibe', old: 'Utility / Map Tool', new: 'Lifestyle / Adventure App' },
+          { f: 'Competitor Match', old: 'Blends in with Tech/SaaS', new: 'Distinctive & Disruptive' },
+          { f: 'Brand Recall', old: 'Standard, forgettable', new: 'High-contrast, sticky' },
+          { f: 'Conversion Speed', old: 'Browse & consider', new: 'See & act' }
+        ];
+        content = `
+          <div>
+            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">Market Positioning</p>
+            <h2 class="text-4xl font-bold mb-8">A More Assertive Presence</h2>
+            <div class="bg-gray-800/50 rounded-2xl overflow-hidden border border-gray-700">
+              <div class="grid grid-cols-3 bg-gray-800 p-4">
+                <span class="font-semibold">Feature</span>
+                <span class="font-semibold" style="color: ${colors.old.primaryLight}">Blue Identity (Old)</span>
+                <span class="font-semibold" style="color: ${colors.rose[400]}">Rose/Charcoal (New)</span>
+              </div>
+              ${rows.map(row => `
+                <div class="grid grid-cols-3 p-4 border-t border-gray-700">
+                  <span class="font-medium">${row.f}</span>
+                  <span class="text-gray-500">${row.old}</span>
+                  <span class="text-gray-200">${row.new}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>`;
+      }
+
+      if (slide.type === 'conclusion') {
+        content = `
+          <div class="text-center">
+            <div class="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6" style="background: ${colors.rose[500]}">
+              ${Logo('#fff', 50)}
+            </div>
+            <h2 class="text-4xl font-bold mb-6">From Information to Action</h2>
+            <div class="max-w-2xl mx-auto space-y-4 mb-8">
+              <p class="text-xl text-gray-300">The Rose/Charcoal pivot isn't just a "paint job" — it's a <span class="font-semibold" style="color: ${colors.rose[400]}">behavioral shift</span>.</p>
+              <p class="text-xl text-gray-300">We're positioning ourselves as the <span class="font-semibold" style="color: ${colors.rose[400]}">high-energy leader</span> in activity-matching.</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-2xl p-6 max-w-xl mx-auto border border-gray-700 mb-6">
+              <p class="text-lg font-medium mb-2" style="color: ${colors.rose[300]}">Next Steps</p>
+              <p class="text-gray-400">Full UI kit rollout → A/B testing on primary conversion funnels</p>
+            </div>
+            <blockquote class="text-lg italic text-gray-400 max-w-lg mx-auto">
+              "We aren't just helping them find a museum; we are fueling their <span style="color: ${colors.rose[400]}">excitement</span> to get there."
+            </blockquote>
+          </div>`;
+      }
+
+      const nav = `
+        <div class="p-4 flex items-center justify-between border-t border-gray-800">
+          <button onclick="prev()" ${current === 0 ? 'disabled' : ''} class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-800 disabled:opacity-30 transition-all">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            <span class="text-sm">Previous</span>
+          </button>
+          <div class="flex gap-2">
+            ${slides.map((_, i) => `
+              <button onclick="goTo(${i})" class="w-2 h-2 rounded-full transition-all ${i === current ? 'w-6' : 'bg-gray-600 hover:bg-gray-500'}" ${i === current ? `style="background: ${colors.rose[500]}"` : ''}></button>
+            `).join('')}
+          </div>
+          <button onclick="next()" ${current === slides.length - 1 ? 'disabled' : ''} class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-800 disabled:opacity-30 transition-all">
+            <span class="text-sm">Next</span>
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div class="text-center pb-2 text-gray-600 text-xs">${current + 1} / ${slides.length}</div>`;
+
+      document.getElementById('app').innerHTML = `
+        <div class="min-h-screen flex flex-col">
+          <div class="flex-1 p-6 flex flex-col justify-center max-w-5xl mx-auto w-full">
+            ${content}
+          </div>
+          ${nav}
+        </div>`;
+      
+      lucide.createIcons();
+    };
+
+    const next = () => { if (current < slides.length - 1) { current++; renderSlide(); } };
+    const prev = () => { if (current > 0) { current--; renderSlide(); } };
+    const goTo = (i) => { current = i; renderSlide(); };
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    renderSlide();
+  </script>
+</body>
+</html>
