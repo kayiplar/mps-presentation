@@ -8,8 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .screen-img { border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .screen-img { border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+    .slide-container { overflow-y: auto; -webkit-overflow-scrolling: touch; }
   </style>
 </head>
 <body class="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white min-h-screen">
@@ -35,6 +36,7 @@
     ];
 
     let current = 0;
+    let touchStartX = 0;
 
     const Logo = (color, size) => `
       <svg width="${size}" height="${size * 0.7}" viewBox="0 0 66 46" fill="none">
@@ -48,48 +50,48 @@
 
       if (slide.type === 'title') {
         content = `
-          <div class="text-center">
-            <div class="flex justify-center gap-4 mb-8">
-              <div class="w-16 h-16 rounded-2xl flex items-center justify-center" style="background: ${colors.old.primary}">
-                ${Logo('#fff', 40)}
+          <div class="text-center px-4">
+            <div class="flex justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center" style="background: ${colors.old.primary}">
+                ${Logo('#fff', 32)}
               </div>
-              <div class="w-1 bg-gray-700 rounded-full"></div>
-              <div class="w-16 h-16 rounded-2xl flex items-center justify-center" style="background: ${colors.rose[500]}">
-                ${Logo('#fff', 40)}
+              <div class="w-0.5 sm:w-1 bg-gray-700 rounded-full"></div>
+              <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center" style="background: ${colors.rose[500]}">
+                ${Logo('#fff', 32)}
               </div>
             </div>
-            <h1 class="text-5xl font-bold mb-4">Rethinking MPS Visual Identity</h1>
-            <p class="text-xl mb-2" style="color: ${colors.rose[400]}">Why we're ditching blue</p>
-            <p class="text-gray-400">And betting on something bolder</p>
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">Rethinking MPS Visual Identity</h1>
+            <p class="text-base sm:text-xl mb-2" style="color: ${colors.rose[400]}">Why we're ditching blue</p>
+            <p class="text-gray-400 text-sm sm:text-base">And betting on something bolder</p>
           </div>`;
       }
 
       if (slide.type === 'why') {
         content = `
-          <div>
-            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Problem</p>
-            <h2 class="text-4xl font-bold mb-8">Blue is everywhere. That's the problem.</h2>
-            <div class="grid grid-cols-3 gap-4">
-              <div class="bg-indigo-950/50 border border-indigo-800 rounded-2xl p-5">
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style="background: ${colors.old.primary}">
-                  <i data-lucide="trending-up" class="w-5 h-5 text-white"></i>
+          <div class="px-2 sm:px-0">
+            <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Problem</p>
+            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">Blue is everywhere. That's the problem.</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div class="bg-indigo-950/50 border border-indigo-800 rounded-xl sm:rounded-2xl p-4 sm:p-5">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3" style="background: ${colors.old.primary}">
+                  <i data-lucide="trending-up" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
                 </div>
-                <h3 class="font-semibold text-indigo-300 mb-2">Where we are</h3>
-                <p class="text-gray-400 text-sm">Every travel app looks the same. Blue screams "safe." Safe doesn't get people to book.</p>
+                <h3 class="font-semibold text-indigo-300 mb-1 sm:mb-2 text-sm sm:text-base">Where we are</h3>
+                <p class="text-gray-400 text-xs sm:text-sm">Every travel app looks the same. Blue screams "safe." Safe doesn't get people to book.</p>
               </div>
-              <div class="bg-gray-800/50 border border-gray-700 rounded-2xl p-5">
-                <div class="w-10 h-10 bg-gray-600 rounded-xl flex items-center justify-center mb-3">
-                  <i data-lucide="refresh-cw" class="w-5 h-5 text-white"></i>
+              <div class="bg-gray-800/50 border border-gray-700 rounded-xl sm:rounded-2xl p-4 sm:p-5">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-600 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3">
+                  <i data-lucide="refresh-cw" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
                 </div>
-                <h3 class="font-semibold text-gray-300 mb-2">What we're doing</h3>
-                <p class="text-gray-400 text-sm">Rose + Charcoal. It's unexpected. It wakes people up instead of lulling them to sleep.</p>
+                <h3 class="font-semibold text-gray-300 mb-1 sm:mb-2 text-sm sm:text-base">What we're doing</h3>
+                <p class="text-gray-400 text-xs sm:text-sm">Rose + Charcoal. It's unexpected. It wakes people up instead of lulling them to sleep.</p>
               </div>
-              <div class="rounded-2xl p-5" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style="background: ${colors.rose[500]}">
-                  <i data-lucide="target" class="w-5 h-5 text-white"></i>
+              <div class="rounded-xl sm:rounded-2xl p-4 sm:p-5" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3" style="background: ${colors.rose[500]}">
+                  <i data-lucide="target" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
                 </div>
-                <h3 class="font-semibold mb-2" style="color: ${colors.rose[300]}">Why it matters</h3>
-                <p class="text-gray-400 text-sm">We want users who act, not users who browse. Color is the first lever.</p>
+                <h3 class="font-semibold mb-1 sm:mb-2 text-sm sm:text-base" style="color: ${colors.rose[300]}">Why it matters</h3>
+                <p class="text-gray-400 text-xs sm:text-sm">We want users who act, not users who browse. Color is the first lever.</p>
               </div>
             </div>
           </div>`;
@@ -97,32 +99,32 @@
 
       if (slide.type === 'psychology') {
         content = `
-          <div>
-            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Science</p>
-            <h2 class="text-4xl font-bold mb-8">Colors trigger behavior. We're using that.</h2>
-            <div class="grid grid-cols-2 gap-6">
-              <div class="rounded-2xl p-6" style="background: linear-gradient(135deg, rgba(225, 29, 72, 0.2) 0%, rgba(225, 29, 72, 0.05) 100%); border: 1px solid ${colors.rose[500]}60">
-                <div class="flex items-center gap-3 mb-4">
-                  <div class="w-12 h-12 rounded-xl" style="background: ${colors.rose[500]}"></div>
-                  <h3 class="text-xl font-bold" style="color: ${colors.rose[400]}">Rose — gets hearts racing</h3>
+          <div class="px-2 sm:px-0">
+            <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Science</p>
+            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">Colors trigger behavior. We're using that.</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div class="rounded-xl sm:rounded-2xl p-4 sm:p-6" style="background: linear-gradient(135deg, rgba(225, 29, 72, 0.2) 0%, rgba(225, 29, 72, 0.05) 100%); border: 1px solid ${colors.rose[500]}60">
+                <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl" style="background: ${colors.rose[500]}"></div>
+                  <h3 class="text-base sm:text-xl font-bold" style="color: ${colors.rose[400]}">Rose — gets hearts racing</h3>
                 </div>
-                <ul class="space-y-2 text-gray-300 text-sm">
-                  <li class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4" style="color: ${colors.rose[500]}"></i> Literally speeds up your pulse</li>
-                  <li class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4" style="color: ${colors.rose[500]}"></i> Creates "I need to do this now" energy</li>
-                  <li class="flex items-center gap-2"><i data-lucide="flame" class="w-4 h-4" style="color: ${colors.rose[500]}"></i> Adventure, not spreadsheets</li>
-                  <li class="flex items-center gap-2"><i data-lucide="target" class="w-4 h-4" style="color: ${colors.rose[500]}"></i> Perfect for "book your next experience"</li>
+                <ul class="space-y-1.5 sm:space-y-2 text-gray-300 text-xs sm:text-sm">
+                  <li class="flex items-center gap-2"><i data-lucide="activity" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" style="color: ${colors.rose[500]}"></i> Literally speeds up your pulse</li>
+                  <li class="flex items-center gap-2"><i data-lucide="zap" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" style="color: ${colors.rose[500]}"></i> Creates "I need to do this now" energy</li>
+                  <li class="flex items-center gap-2"><i data-lucide="flame" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" style="color: ${colors.rose[500]}"></i> Adventure, not spreadsheets</li>
+                  <li class="flex items-center gap-2"><i data-lucide="target" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" style="color: ${colors.rose[500]}"></i> Perfect for "book your next experience"</li>
                 </ul>
               </div>
-              <div class="bg-gradient-to-br from-gray-800/80 to-gray-700/30 border border-gray-600 rounded-2xl p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <div class="w-12 h-12 rounded-xl" style="background: ${colors.charcoal[500]}"></div>
-                  <h3 class="text-xl font-bold text-gray-300">Charcoal — keeps it classy</h3>
+              <div class="bg-gradient-to-br from-gray-800/80 to-gray-700/30 border border-gray-600 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+                <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl" style="background: ${colors.charcoal[500]}"></div>
+                  <h3 class="text-base sm:text-xl font-bold text-gray-300">Charcoal — keeps it classy</h3>
                 </div>
-                <ul class="space-y-2 text-gray-300 text-sm">
-                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-gray-500"></i> Rose alone is too loud. This balances it.</li>
-                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-gray-500"></i> Modern, premium, tech-forward</li>
-                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-gray-500"></i> Says "we know what we're doing"</li>
-                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-gray-500"></i> Excitement without chaos</li>
+                <ul class="space-y-1.5 sm:space-y-2 text-gray-300 text-xs sm:text-sm">
+                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 text-gray-500"></i> Rose alone is too loud. This balances it.</li>
+                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 text-gray-500"></i> Modern, premium, tech-forward</li>
+                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 text-gray-500"></i> Says "we know what we're doing"</li>
+                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 text-gray-500"></i> Excitement without chaos</li>
                 </ul>
               </div>
             </div>
@@ -131,112 +133,112 @@
 
       if (slide.type === 'screens-before') {
         content = `
-          <div>
-            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.old.primaryLight}">Before</p>
-            <h2 class="text-3xl font-bold mb-6">What we have now</h2>
+          <div class="px-2 sm:px-0">
+            <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.old.primaryLight}">Before</p>
+            <h2 class="text-xl sm:text-3xl font-bold mb-4 sm:mb-6">What we have now</h2>
             <div class="flex justify-center">
-              <img src="images/blue-composite.png" alt="Current blue design" class="screen-img max-h-[65vh] w-auto">
+              <img src="images/blue-composite.png" alt="Current blue design" class="screen-img max-h-[50vh] sm:max-h-[65vh] w-auto max-w-full">
             </div>
-            <p class="text-center text-gray-500 mt-4">Looks like every other travel app. Forgettable.</p>
+            <p class="text-center text-gray-500 mt-3 sm:mt-4 text-xs sm:text-base">Looks like every other travel app. Forgettable.</p>
           </div>`;
       }
 
       if (slide.type === 'screens-after') {
         content = `
-          <div>
-            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">After</p>
-            <h2 class="text-3xl font-bold mb-6">Where we're going</h2>
+          <div class="px-2 sm:px-0">
+            <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">After</p>
+            <h2 class="text-xl sm:text-3xl font-bold mb-4 sm:mb-6">Where we're going</h2>
             <div class="flex justify-center">
-              <img src="images/red-composite.png" alt="New rose design" class="screen-img max-h-[65vh] w-auto">
+              <img src="images/red-composite.png" alt="New rose design" class="screen-img max-h-[50vh] sm:max-h-[65vh] w-auto max-w-full">
             </div>
-            <p class="text-center text-gray-500 mt-4">You see that button? You want to tap it.</p>
+            <p class="text-center text-gray-500 mt-3 sm:mt-4 text-xs sm:text-base">You see that button? You want to tap it.</p>
           </div>`;
       }
 
       if (slide.type === 'hierarchy-before') {
         content = `
-          <div>
-            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.old.primaryLight}">Current System</p>
-            <h2 class="text-4xl font-bold mb-8">What we have now</h2>
-            <div class="grid grid-cols-3 gap-4">
-              <div class="bg-indigo-950/30 rounded-2xl p-6 border border-indigo-900/50">
-                <div class="flex flex-col gap-3 mb-4">
-                  <button class="px-6 py-3 rounded-full font-semibold text-sm text-white" style="background: linear-gradient(90deg, ${colors.old.violet}, ${colors.old.primary}); box-shadow: 0 8px 16px ${colors.old.violet}30">Check availability</button>
-                  <span class="font-medium text-center" style="color: ${colors.old.primaryLight}">Gradient CTA</span>
+          <div class="px-2 sm:px-0">
+            <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.old.primaryLight}">Current System</p>
+            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">What we have now</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div class="bg-indigo-950/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-indigo-900/50">
+                <div class="flex flex-col gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm text-white" style="background: linear-gradient(90deg, ${colors.old.violet}, ${colors.old.primary}); box-shadow: 0 8px 16px ${colors.old.violet}30">Check availability</button>
+                  <span class="font-medium text-center text-xs sm:text-sm" style="color: ${colors.old.primaryLight}">Gradient CTA</span>
                 </div>
-                <p class="text-gray-400 text-sm">Main action. Violet-to-navy gradient with glow. Looks premium, but...</p>
+                <p class="text-gray-400 text-xs sm:text-sm">Main action. Violet-to-navy gradient with glow.</p>
               </div>
-              <div class="bg-indigo-950/30 rounded-2xl p-6 border border-indigo-900/50">
-                <div class="flex flex-col gap-3 mb-4">
-                  <button class="px-6 py-3 rounded-full font-semibold text-sm text-white" style="background: ${colors.old.primary}">Let's Go!</button>
-                  <span class="font-medium text-center" style="color: ${colors.old.primaryLight}">Primary Button</span>
+              <div class="bg-indigo-950/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-indigo-900/50">
+                <div class="flex flex-col gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm text-white" style="background: ${colors.old.primary}">Let's Go!</button>
+                  <span class="font-medium text-center text-xs sm:text-sm" style="color: ${colors.old.primaryLight}">Primary Button</span>
                 </div>
-                <p class="text-gray-400 text-sm">Solid navy. Also used for CTAs. Wait, which one is THE button?</p>
+                <p class="text-gray-400 text-xs sm:text-sm">Solid navy. Also used for CTAs. Which is THE button?</p>
               </div>
-              <div class="bg-indigo-950/30 rounded-2xl p-6 border border-indigo-900/50">
-                <div class="flex flex-col gap-3 mb-4">
-                  <button class="px-6 py-3 rounded-full font-semibold text-sm" style="background: ${colors.old.lightGrey}; color: #00022D">Log in or Sign up</button>
-                  <span class="font-medium text-center text-gray-400">Secondary Button</span>
+              <div class="bg-indigo-950/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-indigo-900/50">
+                <div class="flex flex-col gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm" style="background: ${colors.old.lightGrey}; color: #00022D">Log in or Sign up</button>
+                  <span class="font-medium text-center text-gray-400 text-xs sm:text-sm">Secondary Button</span>
                 </div>
-                <p class="text-gray-400 text-sm">Light grey. Secondary actions. Actually decent contrast here.</p>
+                <p class="text-gray-400 text-xs sm:text-sm">Light grey. Secondary actions.</p>
               </div>
             </div>
-            <div class="mt-6 rounded-2xl p-4 text-center bg-indigo-950/30 border border-indigo-900/50">
-              <p class="text-indigo-300">The problem: Two "primary" looking buttons. Users hesitate. Hesitation kills conversions.</p>
+            <div class="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center bg-indigo-950/30 border border-indigo-900/50">
+              <p class="text-indigo-300 text-xs sm:text-base">Two "primary" looking buttons. Users hesitate. Hesitation kills conversions.</p>
             </div>
           </div>`;
       }
 
       if (slide.type === 'hierarchy-after') {
         content = `
-          <div>
-            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">New System</p>
-            <h2 class="text-4xl font-bold mb-8">One button to rule them all</h2>
-            <div class="grid grid-cols-2 gap-6">
-              <div class="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
-                <div class="flex items-center gap-4 mb-4">
-                  <button class="px-6 py-3 rounded-xl font-semibold text-sm text-white" style="background: ${colors.rose[500]}">Check availability</button>
-                  <span class="font-medium" style="color: ${colors.rose[400]}">The money button</span>
+          <div class="px-2 sm:px-0">
+            <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">New System</p>
+            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">One button to rule them all</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-700">
+                <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm text-white flex-shrink-0" style="background: ${colors.rose[500]}">Check availability</button>
+                  <span class="font-medium text-sm sm:text-base" style="color: ${colors.rose[400]}">The money button</span>
                 </div>
-                <p class="text-gray-400 text-sm">Rose is reserved for the ONE action we want. When everything else is muted, this screams "tap me." No confusion. No competition.</p>
+                <p class="text-gray-400 text-xs sm:text-sm">Rose is reserved for the ONE action we want. This screams "tap me." No confusion.</p>
               </div>
-              <div class="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
-                <div class="flex items-center gap-4 mb-4">
-                  <button class="px-6 py-3 rounded-xl font-semibold text-sm text-white" style="background: ${colors.charcoal[700]}; border: 1px solid ${colors.charcoal[500]}">Log in</button>
-                  <span class="text-gray-400 font-medium">Everything else</span>
+              <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-700">
+                <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm text-white flex-shrink-0" style="background: ${colors.charcoal[700]}; border: 1px solid ${colors.charcoal[500]}">Log in</button>
+                  <span class="text-gray-400 font-medium text-sm sm:text-base">Everything else</span>
                 </div>
-                <p class="text-gray-400 text-sm">Secondary stuff gets charcoal. Still clickable, but it knows its place. Users see the hierarchy instantly.</p>
+                <p class="text-gray-400 text-xs sm:text-sm">Secondary stuff gets charcoal. Still clickable, but it knows its place.</p>
               </div>
             </div>
-            <div class="mt-6 rounded-2xl p-4 text-center" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
-              <p style="color: ${colors.rose[300]}">We're not asking users to think. We're telling them where to click.</p>
+            <div class="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
+              <p class="text-xs sm:text-base" style="color: ${colors.rose[300]}">We're not asking users to think. We're telling them where to click.</p>
             </div>
           </div>`;
       }
 
       if (slide.type === 'comparison') {
         const rows = [
-          { f: 'User mindset', old: '"Let me research this"', new: '"Let me book this"' },
-          { f: 'App vibe', old: 'Another travel utility', new: 'The adventure starts here' },
+          { f: 'User mindset', old: '"Research this"', new: '"Book this"' },
+          { f: 'App vibe', old: 'Travel utility', new: 'Adventure starts here' },
           { f: 'In the market', old: 'Blends in', new: 'Stands out' },
-          { f: 'Memory', old: '"What was that app called?"', new: '"The pink one"' },
-          { f: 'Conversion', old: 'Browse, compare, leave', new: 'See, want, book' }
+          { f: 'Memory', old: '"What app?"', new: '"The pink one"' },
+          { f: 'Conversion', old: 'Browse & leave', new: 'See, want, book' }
         ];
         content = `
-          <div>
-            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Payoff</p>
-            <h2 class="text-4xl font-bold mb-8">What actually changes</h2>
-            <div class="bg-gray-800/50 rounded-2xl overflow-hidden border border-gray-700">
-              <div class="grid grid-cols-3 bg-gray-800 p-4">
+          <div class="px-2 sm:px-0">
+            <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Payoff</p>
+            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">What actually changes</h2>
+            <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl overflow-hidden border border-gray-700 text-xs sm:text-base">
+              <div class="grid grid-cols-3 bg-gray-800 p-2.5 sm:p-4">
                 <span class="font-semibold"></span>
-                <span class="font-semibold" style="color: ${colors.old.primaryLight}">Blue (now)</span>
-                <span class="font-semibold" style="color: ${colors.rose[400]}">Rose (soon)</span>
+                <span class="font-semibold text-center" style="color: ${colors.old.primaryLight}">Blue</span>
+                <span class="font-semibold text-center" style="color: ${colors.rose[400]}">Rose</span>
               </div>
               ${rows.map(row => `
-                <div class="grid grid-cols-3 p-4 border-t border-gray-700">
+                <div class="grid grid-cols-3 p-2.5 sm:p-4 border-t border-gray-700">
                   <span class="font-medium">${row.f}</span>
-                  <span class="text-gray-500">${row.old}</span>
-                  <span class="text-gray-200">${row.new}</span>
+                  <span class="text-gray-500 text-center">${row.old}</span>
+                  <span class="text-gray-200 text-center">${row.new}</span>
                 </div>
               `).join('')}
             </div>
@@ -245,46 +247,46 @@
 
       if (slide.type === 'conclusion') {
         content = `
-          <div class="text-center">
-            <div class="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6" style="background: ${colors.rose[500]}">
-              ${Logo('#fff', 50)}
+          <div class="text-center px-4">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6" style="background: ${colors.rose[500]}">
+              ${Logo('#fff', 40)}
             </div>
-            <h2 class="text-4xl font-bold mb-6">This isn't a redesign. It's a repositioning.</h2>
-            <div class="max-w-2xl mx-auto space-y-4 mb-8">
-              <p class="text-xl text-gray-300">Blue says "we're trustworthy." Rose says <span class="font-semibold" style="color: ${colors.rose[400]}">"let's go."</span></p>
-              <p class="text-xl text-gray-300">We're building an app that <span class="font-semibold" style="color: ${colors.rose[400]}">makes people act</span>, not just look.</p>
+            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">This isn't a redesign. It's a repositioning.</h2>
+            <div class="max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+              <p class="text-base sm:text-xl text-gray-300">Blue says "we're trustworthy." Rose says <span class="font-semibold" style="color: ${colors.rose[400]}">"let's go."</span></p>
+              <p class="text-base sm:text-xl text-gray-300">We're building an app that <span class="font-semibold" style="color: ${colors.rose[400]}">makes people act</span>, not just look.</p>
             </div>
-            <div class="bg-gray-800/50 rounded-2xl p-6 max-w-xl mx-auto border border-gray-700 mb-6">
-              <p class="text-lg font-medium mb-2" style="color: ${colors.rose[300]}">What's next</p>
-              <p class="text-gray-400">Roll out the new system. A/B test conversions. Prove the hypothesis.</p>
+            <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 max-w-xl mx-auto border border-gray-700 mb-4 sm:mb-6">
+              <p class="text-base sm:text-lg font-medium mb-1 sm:mb-2" style="color: ${colors.rose[300]}">What's next</p>
+              <p class="text-gray-400 text-sm sm:text-base">Roll out the new system. A/B test conversions. Prove the hypothesis.</p>
             </div>
-            <blockquote class="text-lg italic text-gray-400 max-w-lg mx-auto">
+            <blockquote class="text-sm sm:text-lg italic text-gray-400 max-w-lg mx-auto">
               "We're not here to help you find activities. We're here to get you <span style="color: ${colors.rose[400]}">out the door</span>."
             </blockquote>
           </div>`;
       }
 
       const nav = `
-        <div class="p-4 flex items-center justify-between border-t border-gray-800">
-          <button onclick="prev()" ${current === 0 ? 'disabled' : ''} class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-800 disabled:opacity-30 transition-all">
-            <i data-lucide="chevron-left" class="w-5 h-5"></i>
-            <span class="text-sm">Previous</span>
+        <div class="p-3 sm:p-4 flex items-center justify-between border-t border-gray-800">
+          <button onclick="prev()" ${current === 0 ? 'disabled' : ''} class="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 rounded-lg hover:bg-gray-800 disabled:opacity-30 transition-all">
+            <i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+            <span class="text-xs sm:text-sm hidden sm:inline">Previous</span>
           </button>
-          <div class="flex gap-2">
+          <div class="flex gap-1.5 sm:gap-2">
             ${slides.map((_, i) => `
-              <button onclick="goTo(${i})" class="w-2 h-2 rounded-full transition-all ${i === current ? 'w-6' : 'bg-gray-600 hover:bg-gray-500'}" ${i === current ? `style="background: ${colors.rose[500]}"` : ''}></button>
+              <button onclick="goTo(${i})" class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all ${i === current ? 'w-4 sm:w-6' : 'bg-gray-600 hover:bg-gray-500'}" ${i === current ? `style="background: ${colors.rose[500]}"` : ''}></button>
             `).join('')}
           </div>
-          <button onclick="next()" ${current === slides.length - 1 ? 'disabled' : ''} class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-800 disabled:opacity-30 transition-all">
-            <span class="text-sm">Next</span>
-            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          <button onclick="next()" ${current === slides.length - 1 ? 'disabled' : ''} class="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 rounded-lg hover:bg-gray-800 disabled:opacity-30 transition-all">
+            <span class="text-xs sm:text-sm hidden sm:inline">Next</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
           </button>
         </div>
         <div class="text-center pb-2 text-gray-600 text-xs">${current + 1} / ${slides.length}</div>`;
 
       document.getElementById('app').innerHTML = `
         <div class="min-h-screen flex flex-col">
-          <div class="flex-1 p-6 flex flex-col justify-center max-w-5xl mx-auto w-full">
+          <div class="flex-1 p-4 sm:p-6 flex flex-col justify-center max-w-5xl mx-auto w-full slide-container">
             ${content}
           </div>
           ${nav}
@@ -297,10 +299,25 @@
     const prev = () => { if (current > 0) { current--; renderSlide(); } };
     const goTo = (i) => { current = i; renderSlide(); };
 
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ') next();
       if (e.key === 'ArrowLeft') prev();
     });
+
+    // Touch/swipe navigation
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) next();
+        else prev();
+      }
+    }, { passive: true });
 
     renderSlide();
   </script>
