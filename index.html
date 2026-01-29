@@ -11,7 +11,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     .screen-img { border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
-    .slide-container { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .slide-container { overflow: hidden; }
     .img-skeleton { 
       background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
       background-size: 200% 100%;
@@ -19,11 +19,10 @@
       border-radius: 12px;
     }
     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-    .img-container { position: relative; min-height: 300px; }
-    .img-container img { opacity: 0; transition: opacity 0.3s ease; }
-    .img-container img.loaded { opacity: 1; }
-    .img-container .img-skeleton { position: absolute; inset: 0; }
-    .img-container img.loaded + .img-skeleton { display: none; }
+    .img-container { position: relative; }
+    .img-container img { transition: opacity 0.3s ease; }
+    .img-container .img-skeleton { position: absolute; inset: 0; pointer-events: none; }
+    .img-container img.loaded + .img-skeleton { opacity: 0; }
   </style>
 </head>
 <body class="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white min-h-screen">
