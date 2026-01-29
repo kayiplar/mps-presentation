@@ -17,7 +17,7 @@
 
   <script>
     const colors = {
-      old: { primary: '#2522A4', primaryLight: '#4960CE' },
+      old: { primary: '#252A84', primaryLight: '#4960CE', violet: '#6559E8', lightGrey: '#F5F5F7' },
       rose: { 300: '#FDA4AF', 400: '#FB7185', 500: '#E11D48' },
       charcoal: { 500: '#4A4A4A', 700: '#2E2E2E' }
     };
@@ -28,7 +28,8 @@
       { type: 'psychology' },
       { type: 'screens-before' },
       { type: 'screens-after' },
-      { type: 'hierarchy' },
+      { type: 'hierarchy-before' },
+      { type: 'hierarchy-after' },
       { type: 'comparison' },
       { type: 'conclusion' }
     ];
@@ -152,10 +153,44 @@
           </div>`;
       }
 
-      if (slide.type === 'hierarchy') {
+      if (slide.type === 'hierarchy-before') {
         content = `
           <div>
-            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Details</p>
+            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.old.primaryLight}">Current System</p>
+            <h2 class="text-4xl font-bold mb-8">What we have now</h2>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="bg-indigo-950/30 rounded-2xl p-6 border border-indigo-900/50">
+                <div class="flex flex-col gap-3 mb-4">
+                  <button class="px-6 py-3 rounded-full font-semibold text-sm text-white" style="background: linear-gradient(90deg, ${colors.old.violet}, ${colors.old.primary}); box-shadow: 0 8px 16px ${colors.old.violet}30">Check availability</button>
+                  <span class="font-medium text-center" style="color: ${colors.old.primaryLight}">Gradient CTA</span>
+                </div>
+                <p class="text-gray-400 text-sm">Main action. Violet-to-navy gradient with glow. Looks premium, but...</p>
+              </div>
+              <div class="bg-indigo-950/30 rounded-2xl p-6 border border-indigo-900/50">
+                <div class="flex flex-col gap-3 mb-4">
+                  <button class="px-6 py-3 rounded-full font-semibold text-sm text-white" style="background: ${colors.old.primary}">Let's Go!</button>
+                  <span class="font-medium text-center" style="color: ${colors.old.primaryLight}">Primary Button</span>
+                </div>
+                <p class="text-gray-400 text-sm">Solid navy. Also used for CTAs. Wait, which one is THE button?</p>
+              </div>
+              <div class="bg-indigo-950/30 rounded-2xl p-6 border border-indigo-900/50">
+                <div class="flex flex-col gap-3 mb-4">
+                  <button class="px-6 py-3 rounded-full font-semibold text-sm" style="background: ${colors.old.lightGrey}; color: #00022D">Log in or Sign up</button>
+                  <span class="font-medium text-center text-gray-400">Secondary Button</span>
+                </div>
+                <p class="text-gray-400 text-sm">Light grey. Secondary actions. Actually decent contrast here.</p>
+              </div>
+            </div>
+            <div class="mt-6 rounded-2xl p-4 text-center bg-indigo-950/30 border border-indigo-900/50">
+              <p class="text-indigo-300">The problem: Two "primary" looking buttons. Users hesitate. Hesitation kills conversions.</p>
+            </div>
+          </div>`;
+      }
+
+      if (slide.type === 'hierarchy-after') {
+        content = `
+          <div>
+            <p class="text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">New System</p>
             <h2 class="text-4xl font-bold mb-8">One button to rule them all</h2>
             <div class="grid grid-cols-2 gap-6">
               <div class="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
