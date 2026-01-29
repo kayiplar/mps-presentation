@@ -26,10 +26,10 @@
     const slides = [
       { type: 'title' },
       { type: 'why' },
-      { type: 'psychology' },
       { type: 'screens-before' },
-      { type: 'screens-after' },
       { type: 'hierarchy-before' },
+      { type: 'psychology' },
+      { type: 'screens-after' },
       { type: 'hierarchy-after' },
       { type: 'comparison' },
       { type: 'conclusion' }
@@ -159,32 +159,36 @@
         content = `
           <div class="px-2 sm:px-0">
             <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.old.primaryLight}">Current System</p>
-            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">What we have now</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">One button for everything</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div class="bg-indigo-950/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-indigo-900/50">
-                <div class="flex flex-col gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm text-white" style="background: linear-gradient(90deg, ${colors.old.violet}, ${colors.old.primary}); box-shadow: 0 8px 16px ${colors.old.violet}30">Check availability</button>
-                  <span class="font-medium text-center text-xs sm:text-sm" style="color: ${colors.old.primaryLight}">Gradient CTA</span>
+                <div class="flex flex-col gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm text-white w-full" style="background: linear-gradient(90deg, ${colors.old.violet}, ${colors.old.primary}); box-shadow: 0 8px 16px ${colors.old.violet}30">Check availability</button>
+                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm text-white w-full" style="background: linear-gradient(90deg, ${colors.old.violet}, ${colors.old.primary}); box-shadow: 0 8px 16px ${colors.old.violet}30">Let's Go!</button>
+                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm text-white w-full" style="background: linear-gradient(90deg, ${colors.old.violet}, ${colors.old.primary}); box-shadow: 0 8px 16px ${colors.old.violet}30">Log in or Sign up</button>
                 </div>
-                <p class="text-gray-400 text-xs sm:text-sm">Main action. Violet-to-navy gradient with glow.</p>
+                <p class="text-gray-400 text-xs sm:text-sm">Same gradient CTA used <strong class="text-indigo-300">everywhere</strong>. Book a tour? Gradient. Log in? Gradient. Everything looks equally important.</p>
               </div>
               <div class="bg-indigo-950/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-indigo-900/50">
-                <div class="flex flex-col gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm text-white" style="background: ${colors.old.primary}">Let's Go!</button>
-                  <span class="font-medium text-center text-xs sm:text-sm" style="color: ${colors.old.primaryLight}">Primary Button</span>
-                </div>
-                <p class="text-gray-400 text-xs sm:text-sm">Solid navy. Also used for CTAs. Which is THE button?</p>
-              </div>
-              <div class="bg-indigo-950/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-indigo-900/50">
-                <div class="flex flex-col gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm" style="background: ${colors.old.lightGrey}; color: #00022D">Log in or Sign up</button>
-                  <span class="font-medium text-center text-gray-400 text-xs sm:text-sm">Secondary Button</span>
-                </div>
-                <p class="text-gray-400 text-xs sm:text-sm">Light grey. Secondary actions.</p>
+                <h4 class="font-semibold text-indigo-300 mb-3 text-sm sm:text-base">The problems:</h4>
+                <ul class="space-y-2 sm:space-y-3 text-gray-300 text-xs sm:text-sm">
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="x-circle" class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>No secondary CTA.</strong> Every action competes for attention equally.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="x-circle" class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>No visual hierarchy.</strong> Users scan, get confused, bounce.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="x-circle" class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Against industry standard.</strong> Airbnb, Uber, Booking.com all use distinct primary + secondary colors.</span>
+                  </li>
+                </ul>
               </div>
             </div>
             <div class="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center bg-indigo-950/30 border border-indigo-900/50">
-              <p class="text-indigo-300 text-xs sm:text-base">Two "primary" looking buttons. Users hesitate. Hesitation kills conversions.</p>
+              <p class="text-indigo-300 text-xs sm:text-base">When everything is important, nothing is. Users don't know where to click.</p>
             </div>
           </div>`;
       }
@@ -193,25 +197,25 @@
         content = `
           <div class="px-2 sm:px-0">
             <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">New System</p>
-            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">One button to rule them all</h2>
+            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">Clear hierarchy. Like the big players.</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-700">
                 <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
                   <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm text-white flex-shrink-0" style="background: ${colors.rose[500]}">Check availability</button>
-                  <span class="font-medium text-sm sm:text-base" style="color: ${colors.rose[400]}">The money button</span>
+                  <span class="font-medium text-sm sm:text-base" style="color: ${colors.rose[400]}">Primary CTA</span>
                 </div>
-                <p class="text-gray-400 text-xs sm:text-sm">Rose is reserved for the ONE action we want. This screams "tap me." No confusion.</p>
+                <p class="text-gray-400 text-xs sm:text-sm"><strong class="text-gray-200">Rose = money action.</strong> Book, buy, convert. Only ONE button type gets this color. Instant recognition.</p>
               </div>
               <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-700">
                 <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
                   <button class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm text-white flex-shrink-0" style="background: ${colors.charcoal[700]}; border: 1px solid ${colors.charcoal[500]}">Log in</button>
-                  <span class="text-gray-400 font-medium text-sm sm:text-base">Everything else</span>
+                  <span class="text-gray-400 font-medium text-sm sm:text-base">Secondary CTA</span>
                 </div>
-                <p class="text-gray-400 text-xs sm:text-sm">Secondary stuff gets charcoal. Still clickable, but it knows its place.</p>
+                <p class="text-gray-400 text-xs sm:text-sm"><strong class="text-gray-200">Charcoal = everything else.</strong> Log in, settings, back. Visible but not competing. Users know it's secondary.</p>
               </div>
             </div>
-            <div class="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
-              <p class="text-xs sm:text-base" style="color: ${colors.rose[300]}">We're not asking users to think. We're telling them where to click.</p>
+            <div class="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl p-3 sm:p-4" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
+              <p class="text-xs sm:text-base text-center" style="color: ${colors.rose[300]}">Same pattern as Airbnb, Uber, Spotify. Primary color for conversions, neutral for the rest.</p>
             </div>
           </div>`;
       }
