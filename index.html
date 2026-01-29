@@ -12,6 +12,18 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     .screen-img { border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
     .slide-container { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .img-skeleton { 
+      background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 12px;
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .img-container { position: relative; min-height: 300px; }
+    .img-container img { opacity: 0; transition: opacity 0.3s ease; }
+    .img-container img.loaded { opacity: 1; }
+    .img-container .img-skeleton { position: absolute; inset: 0; }
+    .img-container img.loaded + .img-skeleton { display: none; }
   </style>
 </head>
 <body class="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white min-h-screen">
@@ -159,7 +171,10 @@
             <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.old.primaryLight}">Before</p>
             <h2 class="text-xl sm:text-3xl font-bold mb-4 sm:mb-6">What we have now</h2>
             <div class="flex justify-center">
-              <img src="images/blue-composite.png" alt="Current blue design" class="screen-img max-h-[50vh] sm:max-h-[65vh] w-auto max-w-full">
+              <div class="img-container max-h-[50vh] sm:max-h-[65vh] w-auto max-w-full aspect-[3/2]">
+                <img src="images/blue-composite.png" alt="Current blue design" class="screen-img max-h-[50vh] sm:max-h-[65vh] w-auto max-w-full" onload="this.classList.add('loaded')">
+                <div class="img-skeleton w-full h-full"></div>
+              </div>
             </div>
             <p class="text-center text-gray-500 mt-3 sm:mt-4 text-xs sm:text-base">Looks like every other travel app. Forgettable.</p>
           </div>`;
@@ -214,7 +229,10 @@
             <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">After</p>
             <h2 class="text-xl sm:text-3xl font-bold mb-4 sm:mb-6">Where we're going</h2>
             <div class="flex justify-center">
-              <img src="images/red-composite.png" alt="New rose design" class="screen-img max-h-[50vh] sm:max-h-[65vh] w-auto max-w-full">
+              <div class="img-container max-h-[50vh] sm:max-h-[65vh] w-auto max-w-full aspect-[3/2]">
+                <img src="images/red-composite.png" alt="New rose design" class="screen-img max-h-[50vh] sm:max-h-[65vh] w-auto max-w-full" onload="this.classList.add('loaded')">
+                <div class="img-skeleton w-full h-full"></div>
+              </div>
             </div>
             <p class="text-center text-gray-500 mt-3 sm:mt-4 text-xs sm:text-base">You see that button? You want to tap it.</p>
           </div>`;
@@ -316,12 +334,11 @@
       }
 
       if (slide.type === 'conclusion') {
-        const roadmapItems = [
-          { title: 'New Assets', desc: 'Icons, splash screens, app icon', icon: 'palette', time: '2-3 weeks' },
-          { title: 'Mobile App', desc: 'Full redesign with new identity', icon: 'smartphone', time: null },
-          { title: 'Webapp v1', desc: 'Revive with single booking experience', icon: 'globe', time: null },
-          { title: 'Voting Webapp', desc: 'Redesign to match new system', icon: 'vote', time: null },
-          { title: 'LottieFiles', desc: 'Custom animations like Airbnb, Duolingo, Headspace', icon: 'lottie', time: '+2 weeks' }
+        const phase1Items = [
+          { title: 'New Assets', desc: 'Icons, splash screens, app icon', icon: 'palette' },
+          { title: 'Mobile App', desc: 'Full redesign with new identity', icon: 'smartphone' },
+          { title: 'Webapp v1', desc: 'Revive with single booking experience', icon: 'globe' },
+          { title: 'Voting Webapp', desc: 'Redesign to match new system', icon: 'vote' }
         ];
         content = `
           <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 items-center lg:items-start px-4">
@@ -338,28 +355,58 @@
             </div>
             <div class="lg:flex-1 w-full max-w-md">
               <p class="text-xs sm:text-sm uppercase tracking-wider mb-4 text-center lg:text-left" style="color: ${colors.rose[400]}">The Roadmap</p>
-              <div class="relative">
-                ${roadmapItems.map((item, i) => `
-                  <div class="flex items-start gap-3 sm:gap-4 ${i < roadmapItems.length - 1 ? 'pb-4 sm:pb-5' : ''}">
-                    <div class="flex flex-col items-center">
-                      <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center flex-shrink-0 z-10 overflow-hidden" style="background: ${i === 0 ? colors.rose[500] : 'transparent'}; border: 2px solid ${colors.rose[500]}">
-                        ${item.icon === 'lottie' 
-                          ? `<lottie-player src="images/Cred tick animation.json" background="transparent" speed="1" style="width: 28px; height: 28px;" loop autoplay></lottie-player>`
-                          : `<i data-lucide="${item.icon}" class="w-4 h-4 sm:w-5 sm:h-5" style="color: ${i === 0 ? '#fff' : colors.rose[500]}"></i>`
-                        }
+              
+              
+              <div class="relative flex gap-2 mb-3">
+                <div class="flex-1">
+                  ${phase1Items.map((item, i) => `
+                    <div class="flex items-start gap-3 ${i < phase1Items.length - 1 ? 'pb-3 sm:pb-4' : ''}">
+                      <div class="flex flex-col items-center">
+                        <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 z-10" style="background: ${i === 0 ? colors.rose[500] : 'transparent'}; border: 2px solid ${colors.rose[500]}">
+                          <i data-lucide="${item.icon}" class="w-3.5 h-3.5 sm:w-4 sm:h-4" style="color: ${i === 0 ? '#fff' : colors.rose[500]}"></i>
+                        </div>
+                        ${i < phase1Items.length - 1 ? `<div class="w-0.5 flex-1 min-h-[16px] sm:min-h-[20px]" style="background: linear-gradient(to bottom, ${colors.rose[500]}, ${colors.rose[500]}40)"></div>` : ''}
                       </div>
-                      ${i < roadmapItems.length - 1 ? `<div class="w-0.5 flex-1 min-h-[20px] sm:min-h-[24px]" style="background: linear-gradient(to bottom, ${colors.rose[500]}, ${colors.rose[500]}40)"></div>` : ''}
+                      <div class="pt-0.5 sm:pt-1">
+                        <p class="text-xs sm:text-sm font-semibold text-white">${item.title}</p>
+                        <p class="text-xs text-gray-400">${item.desc}</p>
+                      </div>
                     </div>
-                    <div class="pt-1 sm:pt-1.5 flex-1">
-                      <div class="flex items-center justify-between">
-                        <p class="text-sm sm:text-base font-semibold text-white">${item.title}</p>
-                        ${item.time ? `<span class="text-xs px-2 py-0.5 rounded-full bg-gray-700 text-gray-300">${item.time}</span>` : ''}
+                  `).join('')}
+                </div>
+                
+                <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+                  <div class="h-full w-px sm:w-0.5 rounded-full" style="background: ${colors.rose[500]}40"></div>
+                  <div class="flex flex-col items-center justify-center">
+                    <span class="text-xs px-2 py-1 rounded-lg font-medium whitespace-nowrap" style="background: ${colors.rose[500]}20; color: ${colors.rose[400]}; border: 1px solid ${colors.rose[500]}40">2-3 weeks</span>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="relative flex gap-2 pt-2 border-t border-gray-700/50">
+                <div class="flex-1">
+                  <div class="flex items-start gap-3">
+                    <div class="flex flex-col items-center">
+                      <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 z-10 overflow-hidden" style="border: 2px solid ${colors.rose[500]}">
+                        <lottie-player src="images/Cred tick animation.json" background="transparent" speed="1" style="width: 24px; height: 24px;" loop autoplay></lottie-player>
                       </div>
-                      <p class="text-xs sm:text-sm text-gray-400">${item.desc}</p>
+                    </div>
+                    <div class="pt-0.5 sm:pt-1">
+                      <p class="text-xs sm:text-sm font-semibold text-white">LottieFiles</p>
+                      <p class="text-xs text-gray-400">Custom animations like Airbnb, Duolingo, Headspace</p>
                     </div>
                   </div>
-                `).join('')}
+                </div>
+                
+                <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+                  <div class="h-full w-px sm:w-0.5 rounded-full opacity-0"></div>
+                  <div class="flex flex-col items-center justify-center">
+                    <span class="text-xs px-2 py-1 rounded-lg font-medium whitespace-nowrap" style="background: ${colors.rose[500]}20; color: ${colors.rose[400]}; border: 1px solid ${colors.rose[500]}40">+2 weeks</span>
+                  </div>
+                </div>
               </div>
+              
             </div>
           </div>`;
       }
