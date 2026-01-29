@@ -12,18 +12,7 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     .screen-img { border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
     .slide-container { overflow: hidden; }
-    .img-skeleton { 
-      background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-      border-radius: 12px;
-    }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-    .img-container { position: relative; aspect-ratio: 3/2; max-height: 55vh; width: fit-content; margin: 0 auto; }
-    .img-container img { opacity: 0; transition: opacity 0.3s ease; height: 100%; width: auto; }
-    .img-container img.loaded { opacity: 1; }
-    .img-container .img-skeleton { position: absolute; inset: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .img-container img.loaded + .img-skeleton { opacity: 0; }
+
   </style>
 </head>
 <body class="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white min-h-screen">
@@ -170,9 +159,8 @@
           <div class="px-2 sm:px-0">
             <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.old.primaryLight}">Before</p>
             <h2 class="text-xl sm:text-3xl font-bold mb-4 sm:mb-6">What we have now</h2>
-            <div class="img-container">
-              <img src="images/blue-composite.png" alt="Current blue design" class="screen-img" onload="this.classList.add('loaded')">
-              <div class="img-skeleton"></div>
+            <div class="flex justify-center">
+              <img src="images/blue-composite.png" alt="Current blue design" class="screen-img max-h-[55vh] w-auto">
             </div>
             <p class="text-center text-gray-500 mt-3 sm:mt-4 text-xs sm:text-base">Looks like every other travel app. Forgettable.</p>
           </div>`;
@@ -226,9 +214,8 @@
           <div class="px-2 sm:px-0">
             <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">After</p>
             <h2 class="text-xl sm:text-3xl font-bold mb-4 sm:mb-6">Where we're going</h2>
-            <div class="img-container">
-              <img src="images/red-composite.png" alt="New rose design" class="screen-img" onload="this.classList.add('loaded')">
-              <div class="img-skeleton"></div>
+            <div class="flex justify-center">
+              <img src="images/red-composite.png" alt="New rose design" class="screen-img max-h-[55vh] w-auto">
             </div>
             <p class="text-center text-gray-500 mt-3 sm:mt-4 text-xs sm:text-base">You see that button? You want to tap it.</p>
           </div>`;
