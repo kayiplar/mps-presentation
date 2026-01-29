@@ -101,32 +101,52 @@
       if (slide.type === 'psychology') {
         content = `
           <div class="px-2 sm:px-0">
-            <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Science</p>
-            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-8">Colors trigger behavior. We're using that.</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <div class="rounded-xl sm:rounded-2xl p-4 sm:p-6" style="background: linear-gradient(135deg, rgba(225, 29, 72, 0.2) 0%, rgba(225, 29, 72, 0.05) 100%); border: 1px solid ${colors.rose[500]}60">
-                <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl" style="background: ${colors.rose[500]}"></div>
-                  <h3 class="text-base sm:text-xl font-bold" style="color: ${colors.rose[400]}">Rose — gets hearts racing</h3>
+            <p class="text-xs sm:text-sm uppercase tracking-wider mb-2" style="color: ${colors.rose[400]}">The Research</p>
+            <h2 class="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">Red is the only color that triggers a physical response.</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div class="rounded-xl sm:rounded-2xl p-3 sm:p-4" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="heart-pulse" class="w-4 h-4" style="color: ${colors.rose[500]}"></i>
+                  <span class="text-xs sm:text-sm font-semibold" style="color: ${colors.rose[400]}">Physiological</span>
                 </div>
-                <ul class="space-y-1.5 sm:space-y-2 text-gray-300 text-xs sm:text-sm">
-                  <li class="flex items-center gap-2"><i data-lucide="activity" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" style="color: ${colors.rose[500]}"></i> Literally speeds up your pulse</li>
-                  <li class="flex items-center gap-2"><i data-lucide="zap" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" style="color: ${colors.rose[500]}"></i> Creates "I need to do this now" energy</li>
-                  <li class="flex items-center gap-2"><i data-lucide="flame" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" style="color: ${colors.rose[500]}"></i> Adventure, not spreadsheets</li>
-                  <li class="flex items-center gap-2"><i data-lucide="target" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" style="color: ${colors.rose[500]}"></i> Perfect for "book your next experience"</li>
-                </ul>
+                <p class="text-gray-300 text-xs sm:text-sm mb-2">Red increases <strong>blood pressure, respiratory rate, and eye blink frequency</strong> before your brain even processes what it's seeing.</p>
+                <p class="text-gray-500 text-xs italic">— Robert Gerard (1958), Nakshian (1964)</p>
               </div>
-              <div class="bg-gradient-to-br from-gray-800/80 to-gray-700/30 border border-gray-600 rounded-xl sm:rounded-2xl p-4 sm:p-6">
-                <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl" style="background: ${colors.charcoal[500]}"></div>
-                  <h3 class="text-base sm:text-xl font-bold text-gray-300">Charcoal — keeps it classy</h3>
+              <div class="rounded-xl sm:rounded-2xl p-3 sm:p-4" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="brain" class="w-4 h-4" style="color: ${colors.rose[500]}"></i>
+                  <span class="text-xs sm:text-sm font-semibold" style="color: ${colors.rose[400]}">Neurological</span>
                 </div>
-                <ul class="space-y-1.5 sm:space-y-2 text-gray-300 text-xs sm:text-sm">
-                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 text-gray-500"></i> Rose alone is too loud. This balances it.</li>
-                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 text-gray-500"></i> Modern, premium, tech-forward</li>
-                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 text-gray-500"></i> Says "we know what we're doing"</li>
-                  <li class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 text-gray-500"></i> Excitement without chaos</li>
-                </ul>
+                <p class="text-gray-300 text-xs sm:text-sm mb-2">20 years of research: red receives an <strong>"attentional advantage"</strong> in visual processing. Works best <strong>"when something is at stake."</strong></p>
+                <p class="text-gray-500 text-xs italic">— Elliot & Maier, University of Rochester</p>
+              </div>
+              <div class="rounded-xl sm:rounded-2xl p-3 sm:p-4" style="background: rgba(225, 29, 72, 0.1); border: 1px solid ${colors.rose[500]}40">
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="mouse-pointer-click" class="w-4 h-4" style="color: ${colors.rose[500]}"></i>
+                  <span class="text-xs sm:text-sm font-semibold" style="color: ${colors.rose[400]}">Behavioral</span>
+                </div>
+                <p class="text-gray-300 text-xs sm:text-sm mb-2">Red exposure causes <strong>faster motor movements</strong>. Creates urgency response — users act, don't just browse.</p>
+                <p class="text-gray-500 text-xs italic">— Journal of Consumer Research (2013)</p>
+              </div>
+            </div>
+            <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-gray-700">
+              <p class="text-xs sm:text-sm font-semibold text-gray-300 mb-3">Who else figured this out:</p>
+              <div class="grid grid-cols-3 gap-2 sm:gap-4 text-center">
+                <div>
+                  <div class="text-lg sm:text-2xl mb-1">🔥</div>
+                  <p class="text-xs sm:text-sm font-semibold" style="color: ${colors.rose[400]}">Tinder</p>
+                  <p class="text-gray-500 text-xs">Red = swipe, hearts, "yes"</p>
+                </div>
+                <div>
+                  <div class="text-lg sm:text-2xl mb-1">🎬</div>
+                  <p class="text-xs sm:text-sm font-semibold text-red-500">Netflix</p>
+                  <p class="text-gray-500 text-xs">Red velvet theater seats → excitement</p>
+                </div>
+                <div>
+                  <div class="text-lg sm:text-2xl mb-1">🏠</div>
+                  <p class="text-xs sm:text-sm font-semibold text-[#FF5A5F]">Airbnb</p>
+                  <p class="text-gray-500 text-xs">Blue → Coral for "belonging"</p>
+                </div>
               </div>
             </div>
           </div>`;
