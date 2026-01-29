@@ -6,6 +6,7 @@
   <title>Rethinking MPS Visual Identity</title>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -130,7 +131,7 @@
               </div>
             </div>
             <div class="bg-gray-800/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-gray-700">
-              <p class="text-xs sm:text-sm font-semibold text-gray-300 mb-3">Who else figured this out:</p>
+              <p class="text-xs sm:text-sm font-semibold text-gray-300 mb-3">Proof that it works:</p>
               <div class="grid grid-cols-3 gap-2 sm:gap-4 text-center">
                 <a href="https://uxplanet.org/how-tinder-design-hooks-you-up-60201d78501f" target="_blank" class="hover:bg-gray-700/50 rounded-lg p-2 transition-colors">
                   <div class="text-lg sm:text-2xl mb-1">🔥</div>
@@ -320,7 +321,7 @@
           { title: 'Mobile App', desc: 'Full redesign with new identity', icon: 'smartphone' },
           { title: 'Webapp v1', desc: 'Revive with single booking experience', icon: 'globe' },
           { title: 'Voting Webapp', desc: 'Redesign to match new system', icon: 'vote' },
-          { title: 'LottieFiles', desc: 'Custom animations for premium feel', icon: 'sparkles' }
+          { title: 'LottieFiles', desc: 'Custom animations for premium feel', icon: 'lottie' }
         ];
         content = `
           <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 items-center lg:items-start px-4">
@@ -341,8 +342,11 @@
                 ${roadmapItems.map((item, i) => `
                   <div class="flex items-start gap-3 sm:gap-4 ${i < roadmapItems.length - 1 ? 'pb-4 sm:pb-5' : ''}">
                     <div class="flex flex-col items-center">
-                      <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center flex-shrink-0 z-10" style="background: ${i === 0 ? colors.rose[500] : 'transparent'}; border: 2px solid ${colors.rose[500]}">
-                        <i data-lucide="${item.icon}" class="w-4 h-4 sm:w-5 sm:h-5" style="color: ${i === 0 ? '#fff' : colors.rose[500]}"></i>
+                      <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center flex-shrink-0 z-10 overflow-hidden" style="background: ${i === 0 ? colors.rose[500] : 'transparent'}; border: 2px solid ${colors.rose[500]}">
+                        ${item.icon === 'lottie' 
+                          ? `<lottie-player src="images/Cred tick animation.json" background="transparent" speed="1" style="width: 28px; height: 28px;" loop autoplay></lottie-player>`
+                          : `<i data-lucide="${item.icon}" class="w-4 h-4 sm:w-5 sm:h-5" style="color: ${i === 0 ? '#fff' : colors.rose[500]}"></i>`
+                        }
                       </div>
                       ${i < roadmapItems.length - 1 ? `<div class="w-0.5 flex-1 min-h-[20px] sm:min-h-[24px]" style="background: linear-gradient(to bottom, ${colors.rose[500]}, ${colors.rose[500]}40)"></div>` : ''}
                     </div>
